@@ -125,19 +125,31 @@ function threeStart() {
 }
 
 
-var rotateY=0
+var angle=0;
+var index=1;
 function topClockwise(){
-    if(meshArr[2][0].rotation.y<Math.PI/2){
+    if(angle<90*index){
+        angle++;
         requestAnimationFrame(topClockwise);
     }else{
+        index=(index%4)+1;
+        for(var j=0;j<9;j++){
+            meshArr[2][j].position.x=Math.ceil(meshArr[2][j].position.x);
+            meshArr[2][j].position.z=Math.ceil(meshArr[2][j].position.z);
+        }
         return;
     }
     for(var j=0;j<9;j++){
         meshArr[2][j].setRotationFromMatrix(new THREE. Matrix4().set(
-                                                    Math.cos(2*Math.PI/360*30) ,0,-Math.sin(2*Math.PI/360*30),0,
+                                                    Math.cos(2*Math.PI/360*angle) ,0,-Math.sin(2*Math.PI/360*angle),0,
                                                     0,1,0,0,
-                                                    Math.sin(2*Math.PI/360*30),0,Math.cos(2*Math.PI/360*30),0,
+                                                    Math.sin(2*Math.PI/360*angle),0,Math.cos(2*Math.PI/360*angle),0,
                                                     0,0,0,1));
+        /*meshArr[2][j].position.set(meshArr[2][j].position.x*Math.cos(2*Math.PI/360*angle)-meshArr[2][j].position.z*Math.sin(2*Math.PI/360*angle),
+                                    100,
+                                    meshArr[2][j].position.x*Math.sin(2*Math.PI/360*angle)+meshArr[2][j].position.z*Math.cos(2*Math.PI/360*angle));*/
+        meshArr[2][j].position.x=meshArr[2][j].position.x*Math.cos(2*Math.PI/360*1)-meshArr[2][j].position.z*Math.sin(2*Math.PI/360*1);
+        meshArr[2][j].position.z=meshArr[2][j].position.x*Math.sin(2*Math.PI/360*1)+meshArr[2][j].position.z*Math.cos(2*Math.PI/360*1);
     }
     
     renderer.render(scene, camera);
