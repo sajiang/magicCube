@@ -133,9 +133,12 @@ function topClockwise(){
         requestAnimationFrame(topClockwise);
     }else{
         index=(index%4)+1;
+        if(index==1){
+            angle=0;
+        }
         for(var j=0;j<9;j++){
-            meshArr[2][j].position.x=Math.ceil(meshArr[2][j].position.x);
-            meshArr[2][j].position.z=Math.ceil(meshArr[2][j].position.z);
+            meshArr[2][j].position.x=Math.ceil(meshArr[2][j].position.x/10>5?100:meshArr[2][j].position.x/10<-5?-100:0);
+            meshArr[2][j].position.z=Math.ceil(meshArr[2][j].position.z/10>5?100:meshArr[2][j].position.z/10<-5?-100:0);
         }
         return;
     }
