@@ -1,5 +1,5 @@
 var renderer;
-var stats;
+var stats; 
 
 var meshArr=new Array(3);
 meshArr[0]=new Array();
