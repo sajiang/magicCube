@@ -126,7 +126,7 @@ function threeStart() {
 
 
 var angle=0;
-var index=1;
+var index=1; 
 function topClockwise(){
     if(angle<90*index){
         angle++;
